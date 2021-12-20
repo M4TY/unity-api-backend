@@ -2,7 +2,7 @@ const express = require("express");
 const req = require("express/lib/request");
 const Note = require("./Note");
 
-let port = 8443;
+let port = 2222;
 
 const app = express();
 
@@ -19,6 +19,10 @@ mongoose
   .catch((err) => {
     console.error(`Error connecting to the database. \n${err}`);
   });
+
+app.get("/", (req, res) => {
+  res.send("welcome to api");
+});
 
 app.get("/note/:id", (req, res) => {
   run(req.params.id);
